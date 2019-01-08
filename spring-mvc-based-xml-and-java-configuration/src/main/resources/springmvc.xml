@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!-- this config equals to java configuration @ComponentScan(basePackages={})  -->
+    <!--
+    <context:component-scan base-package="com.fmz.learn.spring.config, com.fmz.learn.spring.controller" />
+    -->
+
+
+    <!-- Handler Mappings -->
+    <!-- default register DefaultAnnotationHandlerMapping/RequestMappingHandlerMapping
+        AND AnnotationMethodHandlerAdapter/RequestMappingHandlerAdapter two class -->
+    <!-- this config equals to java configuration @EnableWebMvc -->
+    <!-- DefaultAnnotationHandlerMapping is deprecated and use for RequestMappingHandlerMapping -->
+    <!-- <mvc:annotation-driven /> -->
+
+    <!-- this config equals to java configuration @Bean#beanNameUrlHandlerMapping() -->
+    <!--
+    <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />
+    -->
+
+    <!-- this config equals to java configuration @Bean#simpleUrlHandlerMapping() -->
+    <!--
+    <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="/welcomePage">simpleControllerDemo</prop>
+            </props>
+        </property>
+    </bean>
+    -->
+
+    <!-- Handler Adapters -->
+    <!-- this is the framework default handler adapter -->
+    <!-- this config equals to java configuration @Bean#simpleControllerHandlerAdapter() -->
+    <!--
+    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
+    -->
+
+    <!-- this config equals to java configuration @Bean#httpRequestHandlerAdapter() -->
+    <!--
+    <bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter" />
+    -->
+
+    <!-- this config equals to java configuration @Bean#simpleServletHandlerAdapter() -->
+    <!--
+    <bean name="simpleServletHandlerAdapter"
+          class="org.springframework.web.servlet.handler.SimpleServletHandlerAdapter" />
+    -->
+
+
+    <!-- Handlers -->
+    <!--
+    <bean name="/welcomePage2" class="com.fmz.learn.spring.controller.SimpleControllerDemo" />
+    -->
+
+
+    <!-- ViewResolver -->
+    <!-- this config equals to java configuration @Bean#internalResourceViewResolver() -->
+    <!--
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+    -->
+</beans>
