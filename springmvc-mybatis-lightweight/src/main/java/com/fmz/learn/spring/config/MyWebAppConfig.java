@@ -10,10 +10,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"com.fmz.learn.spring.config",
-        "com.fmz.learn.spring.controller",
-        "com.fmz.learn.spring.service.impl",
-        "com.fmz.learn.spring.config"})
+@ComponentScan(basePackages = {"com.fmz.learn.spring.config", "com.fmz.learn.spring.controller"})
 @ImportResource("classpath:/application-dao.xml")
 public class MyWebAppConfig {
 
