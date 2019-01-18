@@ -9,6 +9,9 @@
     - 返回数据：根据后缀判断，返回xml数据
 - 访问：`http://localhost:8080/spring-message-body-conversion/resources/result.json`
     - 返回数据：根据后缀判断，返回json数据
+- 自定义`ReportConverter`
+    - 访问单元测试
+    - 配置：`MyWebConfig#extendMessageConverters()`
 
 POM文件中增加的`HttpMessageConverter`：
 
