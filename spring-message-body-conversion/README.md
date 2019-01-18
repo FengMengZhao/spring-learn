@@ -9,30 +9,33 @@
     - 返回数据：根据后缀判断，返回xml数据
 - 访问：`http://localhost:8080/spring-message-body-conversion/resources/result.json`
     - 返回数据：根据后缀判断，返回json数据
-- POM文件中增加的`HttpMessageConverter`：
 
-    <!-- Gsno for HttpMessageConverter -->
-    <dependency>
-      <groupId>com.google.code.gson</groupId>
-      <artifactId>gson</artifactId>
-      <version>2.8.5</version>
-    </dependency>
+POM文件中增加的`HttpMessageConverter`：
 
-    <!-- Jackson for HttpMessageConverter -->
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-annotations</artifactId>
-      <version>2.4.6</version>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-core</artifactId>
-      <version>2.4.6</version>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>2.4.6</version>
-    </dependency>
+```
+<!-- Gsno for HttpMessageConverter -->
+<dependency>
+  <groupId>com.google.code.gson</groupId>
+  <artifactId>gson</artifactId>
+  <version>2.8.5</version>
+</dependency>
+
+<!-- Jackson for HttpMessageConverter -->
+<dependency>
+  <groupId>com.fasterxml.jackson.core</groupId>
+  <artifactId>jackson-annotations</artifactId>
+  <version>2.4.6</version>
+</dependency>
+<dependency>
+  <groupId>com.fasterxml.jackson.core</groupId>
+  <artifactId>jackson-core</artifactId>
+  <version>2.4.6</version>
+</dependency>
+<dependency>
+  <groupId>com.fasterxml.jackson.core</groupId>
+  <artifactId>jackson-databind</artifactId>
+  <version>2.4.6</version>
+</dependency>
+```
 
 ---
