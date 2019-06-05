@@ -84,3 +84,58 @@ POM文件中增加的`HttpMessageConverter`：
 - 访问：`http://localhost:8080/freemarker-basic-demo`
 
 ---
+
+### 6. springmvc-multi-datasource-jdbctemplate项目
+
+多数据源连接项目
+
+- 配置：
+
+```xml
+<!-- 配置数据源ds1 ，dbcp -->
+<bean id="dataSource1" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+  <property name="driverClassName" value="${jdbc.driver}"/>
+  <property name="url" value="${ds1.jdbc.url}"/>
+  <property name="username" value="${ds1.jdbc.username}" />
+  <property name="password" value="${ds1.jdbc.password}" />
+  <property name="maxActive" value="30" />
+  <property name="maxIdle" value="5" />
+</bean>
+
+<!-- 配置数据源ds2 ，dbcp -->
+<bean id="dataSource2" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+  <property name="driverClassName" value="${jdbc.driver}"/>
+  <property name="url" value="${ds2.jdbc.url}"/>
+  <property name="username" value="${ds2.jdbc.username}" />
+  <property name="password" value="${ds2.jdbc.password}" />
+  <property name="maxActive" value="30" />
+  <property name="maxIdle" value="5" />
+</bean>
+
+<!-- 配置jdbctemplate -->
+<bean id="jdbcTemplate-ds1" class="org.springframework.jdbc.core.JdbcTemplate">
+<property name="dataSource" ref="dataSource1"/>
+</bean>
+
+<!-- 配置jdbctemplate -->
+<bean id="jdbcTemplate-ds2" class="org.springframework.jdbc.core.JdbcTemplate">
+<property name="dataSource" ref="dataSource2"/>
+</bean>
+```
+
+- 注入：
+
+```java
+@Autowired
+@Qualifier("jdbcTemplate-ds1")
+JdbcTemplate jdbcTemplateDs1;
+
+@Autowired
+@Qualifier("jdbcTemplate-ds2")
+JdbcTemplate jdbcTemplateDs2;
+```
+
+
+- 访问：
+  - `http://localhost:8080/springmvc_multi_datasource_jdbctemplate_war_exploded/ds1`
+  - `http://localhost:8080/springmvc_multi_datasource_jdbctemplate_war_exploded/ds2`
