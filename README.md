@@ -139,3 +139,106 @@ JdbcTemplate jdbcTemplateDs2;
 - 访问：
   - `http://localhost:8080/springmvc_multi_datasource_jdbctemplate_war_exploded/ds1`
   - `http://localhost:8080/springmvc_multi_datasource_jdbctemplate_war_exploded/ds2`
+
+---
+
+### 7. spring-source-code-learn项目
+
+> 在debug框架的源代码的时候，最好能够让框架输出级别低的日志，这样有利于调试代码。
+
+- 在spring4框架中使用sl4j日志(spring5使用新的sl4j2)
+
+  - spring java项目
+
+    - ```java
+      public class App {
+          public static void main( String[] args ) {
+              ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+              TestBean testBean = (TestBean) context.getBean("testBean");
+              testBean.doSomething();
+          }
+      }
+      ```
+
+    - ```java
+      public class TestBean {
+
+          private static final Logger logger = Logger.getLogger(TestBean.class);
+
+          public void doSomething() {
+              logger.debug("I am the testBean print log... DEBUG");
+              logger.info("I am the testBean print log... INFO");
+          }
+      }
+      ```
+
+  - spring web项目
+
+    - ```xml
+      <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns="http://java.sun.com/xml/ns/javaee"
+               xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                                   http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+
+          <!-- Servlet Context Name -->
+          <display-name>spring-source-code-learn</display-name>
+
+          <welcome-file-list>
+              <welcome-file>login.jsp</welcome-file>
+              <welcome-file>login.html</welcome-file>
+          </welcome-file-list>
+
+          <context-param>
+              <param-name>contextConfigLocation</param-name>
+              <param-value>classpath:beans.xml</param-value>
+          </context-param>
+
+          <listener>
+              <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+          </listener>
+
+          <context-param>
+              <param-name>log4jConfigLocation</param-name>
+              <param-value>classpath:log4j.properties</param-value>
+          </context-param>
+
+          <listener>
+              <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+          </listener>
+
+      </web-app>
+      ```
+
+  - bean配置
+
+    - ```xml
+      <?xml version = "1.0" encoding = "UTF-8"?>
+
+      <beans xmlns = "http://www.springframework.org/schema/beans"
+             xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation = "http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+          <bean id="testBean" class="com.fmz.service.TestBean" />
+      </beans>
+      ```
+
+  - sl4j日志配置
+
+    - ```properties
+      # Global logging configuration
+      log4j.rootLogger=DEBUG, stdout
+      #log4j.logger.org.springframework=INFO
+      #log4j.logger.com.fmz=ERROR
+      # Console output...
+      log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+      log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+      log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n
+      ```
+
+> spring Java项目直接Java启动，web项目使用Tomcat启动
+>
+> spring版本选定5以下（不包括5），spring5支持新的升级版的sl4j2
+
+---
+
